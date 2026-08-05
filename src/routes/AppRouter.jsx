@@ -6,6 +6,7 @@ import Room from "../pages/Room/Room";
 import Swipe from "../pages/Swipe/Swipe";
 import Match from "../pages/Match/Match";
 import NotFound from "../pages/NotFound/NotFound";
+import ProtectedRoute from "../components/layout/ProtectedRoute";
 
 const AppRouter = () => {
   return (
@@ -15,11 +16,32 @@ const AppRouter = () => {
 
         <Route path="/login" element={<Login />} />
 
-        <Route path="/room/:roomId" element={<Room />} />
+        <Route 
+          path="/room/:roomId" 
+          element={
+              <ProtectedRoute>
+                <Room />
+              </ProtectedRoute>
+              } 
+        />
 
-        <Route path="/swipe/:roomId" element={<Swipe />} />
+        <Route 
+          path="/swipe/:roomId" 
+          element={
+            <ProtectedRoute>
+              <Swipe />
+            </ProtectedRoute>
+          } 
+        />
 
-        <Route path="/match/:roomId" element={<Match />} />
+        <Route 
+          path="/match/:roomId" 
+          element={
+            <ProtectedRoute>
+              <Match />
+            </ProtectedRoute>
+            } 
+        />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
